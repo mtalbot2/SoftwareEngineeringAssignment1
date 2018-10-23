@@ -6,33 +6,41 @@ public class course
 {
 	
 	private String courseName;
-	private String courseStudent;
-	DateTime startDate = new DateTime();
-    DateTime endDate = new DateTime();
-    private ArrayList<String> courseStudents;
+	private DateTime startDate;
+    private DateTime endDate;
+    private ArrayList<module> modules;
 	
-	public course(String coursename, String coursestudent, DateTime startdate, DateTime enddate)
+	public course(String coursename, DateTime startdate, DateTime enddate, ArrayList<module> modules)
 	{
 		this.courseName = coursename;
-		this.courseStudent = coursestudent;
 		this.startDate = startdate;
 		this.endDate = enddate;
-		courseStudents = new ArrayList<String>();	
+		this.modules = modules;	
 	}
 	
-	public String getCourseName()
+	public void addModule(module module1)
+	{
+		this.modules.add(0, module1);
+		for(student student: module1.getStudents())
+		{
+			student.setCourse(this);
+		}
+	}
+	
+	public void removeModule(module module1)
+	{
+		int index = this.modules.indexOf(module1);
+		this.modules.remove(index);
+	}
+	
+	public String getName()
 	{
 		return courseName;
 	}
 	
-	public ArrayList<String> getCourseStudents()
+	public void setName(String name)
 	{
-		return courseStudents;
-	}
-	
-	public void addCourseStudent()
-	{
-		courseStudents.add(courseStudent);
+		this.courseName = name;
 	}
 	
 	public DateTime getStartDate()
@@ -40,15 +48,28 @@ public class course
 		return startDate;
 	}
 	
+	public void setStartDate(DateTime start) 
+	{
+		this.startDate = start;
+	}
+	
 	public DateTime getEndDate()
 	{
 		return endDate;
-	}	
-	
-	@Override
-	public String toString()
-	{
-		return courseName;
 	}
-
+	
+	public void setEndDate(DateTime end)
+	{
+		this.endDate = end;
+	}
+	
+	public ArrayList<module> getModules()
+	{
+		return modules;
+	}
+	
+	public void setModules(ArrayList<module> module1)
+	{
+		this.modules = module1;
+	}
 }

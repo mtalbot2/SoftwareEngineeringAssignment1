@@ -5,18 +5,36 @@ public class module
 {
 	
 	private String modName;
-	private int modID;
-	private String modStudent;
-	private String course;
-	private ArrayList<String> students;
+	private String modID;
+	private ArrayList<student> modStudents;
 
-	public module(String modName, int modID, String modStudent, String course)
+	public module(String modName, String modID, ArrayList<student> students)
 	{
 		this.modName = modName;
 		this.modID = modID;
-		this.modStudent = modStudent;
-		this.course = course;
-		students = new ArrayList<String>();
+		this.modStudents = students;
+	}
+	
+	public void addStudent(student student)
+	{
+		this.modStudents.add(student);
+		student.addModule(this);
+	}
+	
+	public void removeStudent(student student)
+	{
+		int index = this.modStudents.indexOf(student);
+		this.modStudents.remove(index);
+	}
+	
+	public ArrayList<student> getStudents()
+	{
+		return modStudents;
+	}
+	
+	public void setStudents(ArrayList<student> students)
+	{
+		this.modStudents = students;
 	}
 	
 	public String getName()
@@ -24,19 +42,19 @@ public class module
 		return modName;
 	}
 	
-	public ArrayList<String> getStudents()
+	public void setName(String name)
 	{
-		return students;
+		this.modName = name;
 	}
 	
-	public void addStudent(String student)
+	public String getId()
 	{
-		students.add(student);
+		return modID;
 	}
 	
-	@Override
-	public String toString()
+	public void setId(String id)
 	{
-		return modName;
+		this.modID = id;
 	}
+	
 }
