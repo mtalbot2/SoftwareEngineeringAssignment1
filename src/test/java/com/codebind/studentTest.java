@@ -3,7 +3,6 @@ package com.codebind;
 import static org.junit.Assert.*;
 
 import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
 import org.junit.Test;
 
 public class studentTest {
